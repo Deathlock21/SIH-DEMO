@@ -17,6 +17,7 @@ import {
 } from './data/mockData';
 import { Navbar } from './components/Navbar';
 import { LandingHero } from './components/LandingHero';
+import { InteractiveCanvas } from './components/InteractiveCanvas';
 import { StudentProfileView } from './components/StudentHub/StudentProfileView';
 import { SkillRadarView } from './components/StudentHub/SkillRadarView';
 import { RoadmapView } from './components/StudentHub/RoadmapView';
@@ -30,13 +31,10 @@ import { NotificationToast, ToastMessage } from './components/NotificationToast'
 
 import { 
   UserCheck, 
-  Compass, 
   Target, 
   Zap, 
   Briefcase, 
   Sparkles, 
-  RefreshCw,
-  Award,
   Layers
 } from 'lucide-react';
 
@@ -54,8 +52,8 @@ export function App() {
   const [toasts, setToasts] = useState<ToastMessage[]>([
     {
       id: 'toast-init',
-      title: 'SkillBridge SIH26044 Demo Ready',
-      message: 'Explore Student, Industry, and College personas or launch the 12-slide Pitch Deck.',
+      title: 'INTERNPARK Platform Initialized',
+      message: 'AI-driven talent intelligence, dynamic skill verification, and closed feedback loop live.',
       type: 'info'
     }
   ]);
@@ -190,6 +188,10 @@ export function App() {
 
   return (
     <div className="app-wrapper">
+      {/* Silent Interactive Ambient Spotlight Background */}
+      <InteractiveCanvas />
+      <div className="cyber-grid-overlay" />
+
       {/* Navigation */}
       <Navbar
         activePersona={activePersona}
@@ -229,21 +231,21 @@ export function App() {
                     className={`role-pill ${studentTab === 'gap' ? 'active' : ''}`}
                     onClick={() => setStudentTab('gap')}
                   >
-                    <Target size={15} /> AI Skill Gap Analysis
+                    <Target size={15} /> Competency Gap Diagnostic
                   </button>
                   <button
                     id="subtab-student-roadmap"
                     className={`role-pill ${studentTab === 'roadmap' ? 'active' : ''}`}
                     onClick={() => setStudentTab('roadmap')}
                   >
-                    <Zap size={15} /> Personalized Roadmap
+                    <Zap size={15} /> Personalized Learning Roadmap
                   </button>
                   <button
                     id="subtab-student-profile"
                     className={`role-pill ${studentTab === 'profile' ? 'active' : ''}`}
                     onClick={() => setStudentTab('profile')}
                   >
-                    <UserCheck size={15} /> Skill Profile & Projects
+                    <UserCheck size={15} /> Student Skill Profile
                   </button>
                   <button
                     id="subtab-student-jobs"
@@ -255,7 +257,7 @@ export function App() {
                 </div>
 
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  Viewing as: <strong style={{ color: '#22d3ee' }}>Rohan Sharma (Student)</strong>
+                  Viewing as: <strong style={{ color: 'var(--primary-red)' }}>Rohan Sharma (Computer Science)</strong>
                 </div>
               </div>
 
@@ -340,17 +342,56 @@ export function App() {
       {/* Real-time Notifications */}
       <NotificationToast toasts={toasts} onDismiss={dismissToast} />
 
+      {/* Interactive Floating Quick-Switch HUD */}
+      <nav className="floating-hud-bar" aria-label="Interactive Quick Persona Switcher">
+        <div className="radar-pulse-container" style={{ marginRight: '0.2rem' }}>
+          <span className="radar-pulse-dot" />
+        </div>
+        <button
+          id="hud-tab-student"
+          className={`hud-pill-button ${activePersona === 'student' ? 'active' : ''}`}
+          onClick={() => setActivePersona('student')}
+        >
+          <UserCheck size={13} />
+          <span>Student</span>
+        </button>
+        <button
+          id="hud-tab-industry"
+          className={`hud-pill-button ${activePersona === 'industry' ? 'active' : ''}`}
+          onClick={() => setActivePersona('industry')}
+        >
+          <Briefcase size={13} />
+          <span>Industry</span>
+        </button>
+        <button
+          id="hud-tab-college"
+          className={`hud-pill-button ${activePersona === 'college' ? 'active' : ''}`}
+          onClick={() => setActivePersona('college')}
+        >
+          <Layers size={13} />
+          <span>College</span>
+        </button>
+        <button
+          id="hud-tab-deck"
+          className={`hud-pill-button ${activePersona === 'presentation' ? 'active' : ''}`}
+          onClick={() => setActivePersona('presentation')}
+        >
+          <Sparkles size={13} />
+          <span>Pitch Deck</span>
+        </button>
+      </nav>
+
       {/* Footer */}
       <footer className="footer">
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontWeight: '800', color: '#ffffff' }}>SkillBridge</span>
-              <span>— Smart India Hackathon 2026</span>
-              <span className="badge badge-cyan" style={{ fontSize: '0.65rem' }}>SIH26044</span>
+              <span style={{ fontWeight: '900', color: '#0f172a', letterSpacing: '0.04em' }}>INTERN<span className="gradient-text-red">PARK</span></span>
+              <span style={{ color: 'var(--text-muted)' }}>— Smart India Hackathon 2026</span>
+              <span className="badge badge-rose" style={{ fontSize: '0.65rem' }}>SIH26044</span>
             </div>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-              Portal for Academia–Industry Collaboration for Skill Mapping, Internships & Placement
+              Academia–Industry Skill Mapping & Continuous Placement Intelligence Engine
             </div>
           </div>
         </div>

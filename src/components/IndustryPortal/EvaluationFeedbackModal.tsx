@@ -89,7 +89,7 @@ export const EvaluationFeedbackModal: React.FC<EvaluationFeedbackModalProps> = (
               width: '36px',
               height: '36px',
               borderRadius: '10px',
-              background: 'linear-gradient(135deg, #8b5cf6, #f43f5e)',
+              background: 'linear-gradient(135deg, #dc2626, #991b1b)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -133,13 +133,13 @@ export const EvaluationFeedbackModal: React.FC<EvaluationFeedbackModalProps> = (
                     border: 'none',
                     cursor: 'pointer',
                     padding: '0.2rem',
-                    color: star <= rating ? '#fbbf24' : 'rgba(255,255,255,0.2)'
+                    color: star <= rating ? '#eab308' : '#cbd5e1'
                   }}
                 >
-                  <Star size={28} fill={star <= rating ? '#fbbf24' : 'none'} />
+                  <Star size={28} fill={star <= rating ? '#eab308' : 'none'} />
                 </button>
               ))}
-              <span style={{ fontSize: '0.9rem', fontWeight: '700', marginLeft: '0.5rem', color: '#fbbf24' }}>
+              <span style={{ fontSize: '0.9rem', fontWeight: '700', marginLeft: '0.5rem', color: '#b45309' }}>
                 {rating} / 5.0 Rating
               </span>
             </div>
@@ -229,7 +229,7 @@ export const EvaluationFeedbackModal: React.FC<EvaluationFeedbackModalProps> = (
                 background: 'var(--bg-surface)',
                 border: '1px solid var(--border-medium)',
                 borderRadius: 'var(--radius-md)',
-                color: '#ffffff',
+                color: 'var(--text-main)',
                 fontSize: '0.88rem',
                 lineHeight: 1.5,
                 outline: 'none',
@@ -274,7 +274,7 @@ export const EvaluationFeedbackModal: React.FC<EvaluationFeedbackModalProps> = (
             <button 
               id="btn-submit-feedback-loop"
               type="submit" 
-              className="btn btn-purple btn-lg" 
+              className="btn btn-primary btn-lg" 
               style={{ flex: 2 }}
             >
               <RefreshCw size={18} /> Submit Evaluation & Close Loop

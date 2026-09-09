@@ -103,17 +103,17 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
         {/* Target Benchmark Polygon */}
         <polygon
           points={benchmarkPoints}
-          fill="rgba(139, 92, 246, 0.08)"
-          stroke="#8b5cf6"
+          fill="rgba(51, 65, 85, 0.06)"
+          stroke="#334155"
           strokeWidth="1.5"
-          strokeDasharray="3 3"
+          strokeDasharray="4 4"
         />
 
         {/* Student Skill Polygon */}
         <polygon
           points={studentPoints}
-          fill="rgba(6, 182, 212, 0.25)"
-          stroke="#06b6d4"
+          fill="rgba(220, 38, 38, 0.2)"
+          stroke="#dc2626"
           strokeWidth="2.5"
         />
 
@@ -131,8 +131,8 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
           const labelY = center + labelDist * Math.sin(angle);
 
           const dotColor = 
-            gap.status === 'matched' ? '#10b981' : 
-            gap.status === 'developing' ? '#f59e0b' : '#f43f5e';
+            gap.status === 'matched' ? '#059669' : 
+            gap.status === 'developing' ? '#d97706' : '#dc2626';
 
           return (
             <g key={i}>
@@ -141,14 +141,14 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
                 cy={dotY}
                 r="4.5"
                 fill={dotColor}
-                stroke="#0a0d14"
+                stroke="#ffffff"
                 strokeWidth="2"
               />
               <text
                 x={labelX}
                 y={labelY}
-                fill="var(--text-secondary)"
-                fontSize="10"
+                fill="#334155"
+                fontSize="11"
                 fontWeight="600"
                 textAnchor="middle"
                 dominantBaseline="central"
@@ -165,15 +165,15 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Target Role Selector Header */}
-      <div className="glass-panel" style={{ padding: '1.75rem' }}>
+      <div className="glass-panel" style={{ padding: '1.75rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <Target size={20} color="#06b6d4" />
-              <h2 style={{ fontSize: '1.4rem' }}>AI Skill Gap Analysis</h2>
+              <Target size={20} color="var(--primary-red)" />
+              <h2 style={{ fontSize: '1.4rem', color: '#0f172a' }}>Competency Gap Diagnostic & Analysis</h2>
             </div>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-              Comparing Rohan Sharma's verified competencies against live industry benchmarks.
+              Benchmarking Rohan Sharma's verified skills against target industry requirements.
             </p>
           </div>
 
@@ -184,9 +184,9 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
               value={student.targetRoleId}
               onChange={(e) => onSelectRole(e.target.value)}
               style={{
-                background: 'var(--bg-surface)',
-                color: '#ffffff',
-                border: '1px solid var(--border-medium)',
+                background: '#ffffff',
+                color: '#0f172a',
+                border: '1px solid rgba(0, 0, 0, 0.15)',
                 borderRadius: 'var(--radius-md)',
                 padding: '0.6rem 1rem',
                 fontSize: '0.9rem',
@@ -206,8 +206,8 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
 
         {/* Selected Role Meta */}
         <div style={{
-          background: 'var(--bg-surface)',
-          border: '1px solid var(--border-subtle)',
+          background: '#f8fafc',
+          border: '1px solid rgba(0, 0, 0, 0.06)',
           borderRadius: 'var(--radius-md)',
           padding: '1rem 1.25rem',
           display: 'flex',
@@ -217,7 +217,7 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
           gap: '1rem'
         }}>
           <div>
-            <div style={{ fontSize: '1.05rem', fontWeight: '700', marginBottom: '0.2rem' }}>
+            <div style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '0.2rem', color: '#0f172a' }}>
               {currentRole.title}
             </div>
             <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', maxWidth: '650px' }}>
@@ -227,7 +227,7 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
           <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.85rem' }}>
             <div>
               <span style={{ color: 'var(--text-muted)' }}>Market Avg: </span>
-              <span style={{ color: '#34d399', fontWeight: '700' }}>{currentRole.averageSalary}</span>
+              <span style={{ color: '#059669', fontWeight: '700' }}>{currentRole.averageSalary}</span>
             </div>
             <div>
               <span style={{ color: 'var(--text-muted)' }}>Demand: </span>
@@ -240,15 +240,15 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
       {/* Visual Radar & Diagnostic Summary */}
       <div className="grid-2">
         {/* Radar Graphic */}
-        <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
           <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-            <h3 style={{ fontSize: '1.1rem' }}>Multi-Axis Competency Radar</h3>
+            <h3 style={{ fontSize: '1.1rem', color: '#0f172a' }}>Multi-Axis Competency Radar</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.75rem' }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#06b6d4' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#06b6d4' }} /> Student
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--primary-red)', fontWeight: '600' }}>
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#dc2626' }} /> Student
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#8b5cf6' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#8b5cf6' }} /> Industry Benchmark
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#334155', fontWeight: '600' }}>
+                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#334155' }} /> Target Benchmark
               </span>
             </div>
           </div>
@@ -259,25 +259,25 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
 
           <div style={{
             width: '100%',
-            background: 'var(--bg-surface)',
+            background: '#f8fafc',
             padding: '0.85rem 1.25rem',
             borderRadius: 'var(--radius-md)',
-            border: '1px solid var(--border-subtle)',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between'
           }}>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Overall Role Fit Readiness:</span>
-            <span style={{ fontSize: '1.25rem', fontWeight: '800', color: matchRatio >= 70 ? '#10b981' : '#f59e0b' }}>
+            <span style={{ fontSize: '1.25rem', fontWeight: '800', color: matchRatio >= 70 ? '#059669' : '#d97706' }}>
               {matchRatio}%
             </span>
           </div>
         </div>
 
         {/* Granular Gaps Breakdown */}
-        <div className="glass-panel" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column' }}>
+        <div className="glass-panel" style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.1rem' }}>Skill Status Breakdown</h3>
+            <h3 style={{ fontSize: '1.1rem', color: '#0f172a' }}>Skill Status Breakdown</h3>
             <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.75rem' }}>
               <span className="badge badge-emerald">{matched.length} Matched</span>
               <span className="badge badge-amber">{developing.length} Developing</span>
@@ -290,11 +290,11 @@ export const SkillRadarView: React.FC<SkillRadarViewProps> = ({
               <div
                 key={idx}
                 style={{
-                  background: 'var(--bg-surface)',
+                  background: '#f8fafc',
                   border: `1px solid ${
-                    gap.status === 'matched' ? 'rgba(16, 185, 129, 0.2)' :
-                    gap.status === 'developing' ? 'rgba(245, 158, 11, 0.2)' :
-                    'rgba(244, 63, 94, 0.2)'
+                    gap.status === 'matched' ? 'rgba(16, 185, 129, 0.25)' :
+                    gap.status === 'developing' ? 'rgba(245, 158, 11, 0.25)' :
+                    'rgba(220, 38, 38, 0.2)'
                   }`,
                   borderRadius: 'var(--radius-md)',
                   padding: '0.85rem 1rem'

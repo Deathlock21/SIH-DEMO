@@ -1,16 +1,13 @@
 import React from 'react';
 import { ActivePersona } from '../types';
+import { TiltCard } from './TiltCard';
 import { 
   GraduationCap, 
   Building2, 
   School, 
   ArrowRight, 
   Sparkles, 
-  CheckCircle2, 
-  TrendingUp, 
-  RefreshCw,
-  Compass,
-  Briefcase
+  RefreshCw
 } from 'lucide-react';
 
 interface LandingHeroProps {
@@ -20,48 +17,55 @@ interface LandingHeroProps {
 export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => {
   return (
     <section style={{
-      padding: '2.5rem 0 2rem 0',
+      padding: '2.5rem 0 2.25rem 0',
       borderBottom: '1px solid var(--border-subtle)',
-      position: 'relative'
+      position: 'relative',
+      zIndex: 1
     }}>
       <div className="container">
         {/* Top Tagline */}
-        <div style={{ textAlign: 'center', maxWidth: '850px', margin: '0 auto 2.5rem auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '900px', margin: '0 auto 2.5rem auto' }}>
           <div style={{
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.35rem 0.9rem',
+            gap: '0.6rem',
+            padding: '0.4rem 1.1rem',
             borderRadius: 'var(--radius-full)',
-            background: 'rgba(6, 182, 212, 0.1)',
-            border: '1px solid rgba(6, 182, 212, 0.3)',
-            color: '#22d3ee',
-            fontSize: '0.82rem',
-            fontWeight: '600',
-            marginBottom: '1rem'
+            background: 'rgba(220, 38, 38, 0.08)',
+            border: '1px solid rgba(220, 38, 38, 0.25)',
+            color: '#b91c1c',
+            fontSize: '0.8rem',
+            fontWeight: '700',
+            letterSpacing: '0.04em',
+            marginBottom: '1.25rem',
+            boxShadow: '0 2px 8px rgba(220, 38, 38, 0.1)'
           }}>
-            <Sparkles size={14} />
-            <span>Smart India Hackathon 2026 • Problem Statement: SIH26044</span>
+            <span className="radar-pulse-dot" />
+            <Sparkles size={14} color="#dc2626" />
+            <span>SMART INDIA HACKATHON 2026 (SIH26044)</span>
           </div>
 
           <h1 style={{
-            fontSize: 'clamp(2rem, 4vw, 3.2rem)',
-            fontWeight: '800',
+            fontSize: 'clamp(2.4rem, 4.8vw, 3.6rem)',
+            fontWeight: '900',
             lineHeight: 1.15,
             marginBottom: '1rem',
-            letterSpacing: '-0.03em'
+            letterSpacing: '-0.02em',
+            color: '#0f172a'
           }}>
-            AI-Powered Academia–Industry <br />
-            <span className="gradient-text-cyan">Skill Intelligence</span> & Placement Ecosystem
+            INTERN<span className="gradient-text-red">PARK</span> <br />
+            <span style={{ fontSize: 'clamp(1.4rem, 2.6vw, 2.1rem)', color: '#334155', fontWeight: '700' }}>
+              Bridging Academia & Industry with Explainable AI
+            </span>
           </h1>
 
           <p style={{
             fontSize: '1.1rem',
             color: 'var(--text-secondary)',
-            lineHeight: 1.6,
-            marginBottom: '1.75rem'
+            lineHeight: 1.7,
+            marginBottom: '1.85rem'
           }}>
-            Bridging the divide between <em>what students learn</em>, <em>what skills they truly possess</em>, and <em>what modern industries demand</em> — reinforced with an explainable AI match engine and post-internship feedback loop.
+            AI-powered micro-internships, dynamic skill verification, explainable recruiter matching, and an automated continuous feedback loop connecting Students, Industry Recruiters, and Colleges.
           </p>
 
           {/* Quick Flow Breadcrumb */}
@@ -70,128 +74,151 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             alignItems: 'center',
             justifyContent: 'center',
             flexWrap: 'wrap',
-            gap: '0.5rem',
-            background: 'var(--bg-surface)',
-            padding: '0.75rem 1.25rem',
+            gap: '0.65rem',
+            background: '#ffffff',
+            padding: '0.75rem 1.4rem',
             borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-subtle)',
-            fontSize: '0.85rem'
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            fontSize: '0.82rem',
+            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)'
           }}>
-            <span style={{ color: '#22d3ee', fontWeight: '600' }}>Student Profile</span>
-            <span style={{ color: 'var(--text-muted)' }}>→</span>
-            <span style={{ color: '#818cf8', fontWeight: '600' }}>AI Skill Mapping</span>
-            <span style={{ color: 'var(--text-muted)' }}>→</span>
-            <span style={{ color: '#f59e0b', fontWeight: '600' }}>Skill Gap Analysis</span>
-            <span style={{ color: 'var(--text-muted)' }}>→</span>
-            <span style={{ color: '#10b981', fontWeight: '600' }}>Personalized Roadmap</span>
-            <span style={{ color: 'var(--text-muted)' }}>→</span>
-            <span style={{ color: '#c084fc', fontWeight: '600' }}>Explainable Matching</span>
-            <span style={{ color: 'var(--text-muted)' }}>→</span>
-            <span style={{ color: '#f43f5e', fontWeight: '700', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-              <RefreshCw size={12} /> Closed Feedback Loop
+            <span style={{ color: '#0f172a', fontWeight: '600' }}>Student Profile</span>
+            <span style={{ color: '#94a3b8' }}>→</span>
+            <span style={{ color: '#0f172a', fontWeight: '600' }}>Taxonomy Mapping</span>
+            <span style={{ color: '#94a3b8' }}>→</span>
+            <span style={{ color: '#0f172a', fontWeight: '600' }}>Competency Gap</span>
+            <span style={{ color: '#94a3b8' }}>→</span>
+            <span style={{ color: '#0f172a', fontWeight: '600' }}>Personalized Roadmap</span>
+            <span style={{ color: '#94a3b8' }}>→</span>
+            <span style={{ color: '#0f172a', fontWeight: '600' }}>Explainable Match</span>
+            <span style={{ color: '#94a3b8' }}>→</span>
+            <span style={{ color: '#dc2626', fontWeight: '700', display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
+              <RefreshCw size={13} className="spin-slow" /> Continuous Feedback Loop
             </span>
           </div>
         </div>
 
-        {/* 3 Persona Fast-Entry Cards */}
-        <div className="grid-3" style={{ marginTop: '2rem' }}>
+        {/* 3 Persona Fast-Entry 3D Tilt Cards */}
+        <div className="grid-3" style={{ marginTop: '2.5rem' }}>
           {/* Student Card */}
-          <div 
+          <TiltCard
             id="hero-card-student"
-            className="glass-panel glass-panel-interactive"
+            glowColor="red"
+            maxTilt={6}
             onClick={() => onSelectPersona('student')}
-            style={{ padding: '1.5rem', cursor: 'pointer', borderColor: 'rgba(6, 182, 212, 0.25)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
-                width: '42px',
-                height: '42px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '12px',
-                background: 'rgba(6, 182, 212, 0.15)',
+                background: 'rgba(220, 38, 38, 0.1)',
+                border: '1px solid rgba(220, 38, 38, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#22d3ee'
+                color: '#dc2626'
               }}>
-                <GraduationCap size={22} />
+                <GraduationCap size={24} />
               </div>
-              <span className="badge badge-cyan">Student Side</span>
+              <span className="badge badge-rose">
+                Student Hub
+              </span>
             </div>
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Student Skill Hub</h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-              Explore your skill profile, evaluate readiness against target roles (e.g. Full Stack Developer), and follow a 4-tier personalized roadmap.
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#0f172a' }}>Student Hub</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.55 }}>
+              Build verified dynamic skill profiles, benchmark competencies against industry targets, and complete personalized 4-tier learning roadmaps.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#22d3ee', fontWeight: '600', fontSize: '0.9rem' }}>
-              <span>Enter Student Dashboard</span>
-              <ArrowRight size={16} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
+                <span>Explore Student Hub</span>
+                <ArrowRight size={16} />
+              </div>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Student Mode</span>
             </div>
-          </div>
+          </TiltCard>
 
           {/* Industry Card */}
-          <div 
+          <TiltCard
             id="hero-card-industry"
-            className="glass-panel glass-panel-interactive"
+            glowColor="white"
+            maxTilt={6}
             onClick={() => onSelectPersona('industry')}
-            style={{ padding: '1.5rem', cursor: 'pointer', borderColor: 'rgba(139, 92, 246, 0.25)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
-                width: '42px',
-                height: '42px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '12px',
-                background: 'rgba(139, 92, 246, 0.15)',
+                background: 'rgba(220, 38, 38, 0.1)',
+                border: '1px solid rgba(220, 38, 38, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#c084fc'
+                color: '#dc2626'
               }}>
-                <Building2 size={22} />
+                <Building2 size={24} />
               </div>
-              <span className="badge badge-purple">Industry Side</span>
+              <span className="badge badge-rose">
+                Industry Portal
+              </span>
             </div>
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Industry Recruitment & Match</h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-              Post opportunities, view candidate profiles with <strong>Explainable Match Scores (e.g. 82%)</strong>, and complete post-internship evaluations.
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#0f172a' }}>Industry Portal</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.55 }}>
+              Post micro-internships, match candidates with <strong>Explainable Match Scores (e.g. 82%)</strong>, and seal post-internship evaluations.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#c084fc', fontWeight: '600', fontSize: '0.9rem' }}>
-              <span>Explore Candidate Matches</span>
-              <ArrowRight size={16} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
+                <span>Inspect Candidates</span>
+                <ArrowRight size={16} />
+              </div>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Recruiter Mode</span>
             </div>
-          </div>
+          </TiltCard>
 
           {/* College Card */}
-          <div 
+          <TiltCard
             id="hero-card-college"
-            className="glass-panel glass-panel-interactive"
+            glowColor="red"
+            maxTilt={6}
             onClick={() => onSelectPersona('college')}
-            style={{ padding: '1.5rem', cursor: 'pointer', borderColor: 'rgba(16, 185, 129, 0.25)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
-                width: '42px',
-                height: '42px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '12px',
-                background: 'rgba(16, 185, 129, 0.15)',
+                background: 'rgba(220, 38, 38, 0.1)',
+                border: '1px solid rgba(220, 38, 38, 0.25)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#34d399'
+                color: '#dc2626'
               }}>
-                <School size={22} />
+                <School size={24} />
               </div>
-              <span className="badge badge-emerald">College Side</span>
+              <span className="badge badge-rose">
+                College Dashboard
+              </span>
             </div>
-            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>College Intelligence & Curriculum</h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1.25rem' }}>
-              Monitor batch-wide skill readiness, spot market curriculum gaps (e.g. Docker vs VMs), and review corporate feedback.
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#0f172a' }}>College Dashboard</h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: '1.25rem', lineHeight: 1.55 }}>
+              Monitor institutional skill readiness, identify market syllabus deficits (e.g. Docker vs Legacy VMs), and ratify corporate feedback.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34d399', fontWeight: '600', fontSize: '0.9rem' }}>
-              <span>View Institutional Analytics</span>
-              <ArrowRight size={16} />
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
+                <span>Review Analytics</span>
+                <ArrowRight size={16} />
+              </div>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>College Mode</span>
             </div>
-          </div>
+          </TiltCard>
         </div>
       </div>
     </section>
   );
 };
+

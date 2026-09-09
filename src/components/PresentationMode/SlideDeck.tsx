@@ -67,13 +67,22 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {/* Top Deck Toolbar */}
-      <div className="glass-panel" style={{ padding: '0.85rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+      <div className="glass-panel" style={{ 
+        padding: '0.85rem 1.5rem', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between', 
+        flexWrap: 'wrap', 
+        gap: '1rem',
+        background: '#ffffff',
+        border: '1px solid rgba(0, 0, 0, 0.08)'
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <span className="badge badge-amber" style={{ fontSize: '0.75rem' }}>
-            SIH 2026 Presentation Mode
+          <span className="badge badge-rose" style={{ fontSize: '0.75rem' }}>
+            SIH 2026 Presentation
           </span>
           <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-            Slide <strong style={{ color: '#ffffff' }}>{slide.slideNumber}</strong> of {totalSlides}
+            Slide <strong style={{ color: 'var(--primary-red)' }}>{slide.slideNumber}</strong> of {totalSlides}
           </span>
         </div>
 
@@ -84,9 +93,9 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
             value={currentSlideIdx}
             onChange={(e) => setCurrentSlideIdx(Number(e.target.value))}
             style={{
-              background: 'var(--bg-surface)',
-              color: '#ffffff',
-              border: '1px solid var(--border-medium)',
+              background: '#ffffff',
+              color: '#0f172a',
+              border: '1px solid rgba(0, 0, 0, 0.15)',
               borderRadius: 'var(--radius-md)',
               padding: '0.35rem 0.75rem',
               fontSize: '0.85rem',
@@ -106,7 +115,7 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
             className={`btn btn-sm ${showNotes ? 'btn-primary' : 'btn-secondary'}`}
             onClick={() => setShowNotes(!showNotes)}
           >
-            <FileText size={14} /> Notes
+            <FileText size={14} /> Speaker Notes
           </button>
 
           <button
@@ -124,51 +133,51 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
         className="glass-panel" 
         style={{
           minHeight: '520px',
-          padding: '3rem',
+          padding: '3.5rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
           position: 'relative',
           overflow: 'hidden',
-          background: 'radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, rgba(16, 21, 34, 0.95) 75%)',
-          border: '1px solid rgba(6, 182, 212, 0.25)',
-          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(6, 182, 212, 0.1)'
+          background: '#ffffff',
+          border: '1px solid rgba(220, 38, 38, 0.2)',
+          boxShadow: 'var(--shadow-lg)'
         }}
       >
         {/* Slide Header */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-            <span style={{ fontSize: '0.82rem', fontWeight: '700', color: '#22d3ee', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--primary-red)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               {slide.category}
             </span>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              SIH26044 • SkillBridge Pitch
+              SIH26044 • INTERNPARK
             </span>
           </div>
 
           <h2 style={{
             fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
             fontWeight: '800',
-            letterSpacing: '-0.03em',
+            letterSpacing: '-0.02em',
             marginBottom: '0.5rem',
-            color: '#ffffff',
+            color: '#0f172a',
             lineHeight: 1.2
           }}>
             {slide.title}
           </h2>
 
           <p style={{
-            fontSize: '1.2rem',
-            color: 'var(--text-secondary)',
+            fontSize: '1.25rem',
+            color: '#475569',
             fontWeight: '500',
             marginBottom: '2rem'
           }}>
-            {slide.subtitle}
+            "{slide.subtitle}"
           </p>
         </div>
 
         {/* Slide Content Body */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', margin: '1rem 0' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', margin: '1rem 0' }}>
           {slide.bullets.map((bullet, idx) => (
             <div 
               key={idx} 
@@ -176,8 +185,8 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '1rem',
-                background: 'rgba(255, 255, 255, 0.02)',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
+                background: '#f8fafc',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
                 padding: '1rem 1.25rem',
                 borderRadius: 'var(--radius-md)'
               }}
@@ -186,12 +195,11 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
                 width: '8px',
                 height: '8px',
                 borderRadius: '50%',
-                background: '#06b6d4',
-                marginTop: '0.55rem',
-                boxShadow: '0 0 10px #06b6d4'
+                background: 'var(--primary-red)',
+                marginTop: '0.55rem'
               }} />
-              <div style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#f8fafc' }}>
-                <strong style={{ color: '#22d3ee', marginRight: '0.5rem' }}>{bullet.bold}</strong>
+              <div style={{ fontSize: '1.1rem', lineHeight: 1.6, color: '#334155' }}>
+                <strong style={{ color: '#0f172a', marginRight: '0.5rem' }}>{bullet.bold}</strong>
                 {bullet.text}
               </div>
             </div>
@@ -201,18 +209,18 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
           {slide.highlightMetric && (
             <div style={{
               marginTop: '0.5rem',
-              background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%)',
-              border: '1px solid rgba(6, 182, 212, 0.3)',
+              background: 'rgba(220, 38, 38, 0.06)',
+              border: '1px solid rgba(220, 38, 38, 0.25)',
               borderRadius: 'var(--radius-md)',
               padding: '1.25rem 1.75rem',
               display: 'flex',
               alignItems: 'center',
               gap: '1.5rem'
             }}>
-              <div style={{ fontSize: '2.5rem', fontWeight: '800', color: '#22d3ee', lineHeight: 1 }}>
+              <div style={{ fontSize: '2.8rem', fontWeight: '900', color: 'var(--primary-red)', lineHeight: 1 }}>
                 {slide.highlightMetric.value}
               </div>
-              <div style={{ fontSize: '1rem', color: 'var(--text-main)', fontWeight: '600' }}>
+              <div style={{ fontSize: '1.05rem', color: '#0f172a', fontWeight: '600' }}>
                 {slide.highlightMetric.label}
               </div>
             </div>
@@ -223,13 +231,13 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
             <blockquote style={{
               margin: '0.75rem 0',
               padding: '1.25rem 1.5rem',
-              background: 'rgba(139, 92, 246, 0.08)',
-              borderLeft: '4px solid #8b5cf6',
+              background: 'rgba(220, 38, 38, 0.05)',
+              borderLeft: '4px solid var(--primary-red)',
               borderRadius: '0 8px 8px 0',
-              fontSize: '1.15rem',
-              fontWeight: '600',
+              fontSize: '1.18rem',
+              fontWeight: '500',
               fontStyle: 'italic',
-              color: '#e2e8f0',
+              color: '#334155',
               lineHeight: 1.5
             }}>
               {slide.quote}
@@ -241,7 +249,7 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
         <div style={{
           marginTop: '2rem',
           paddingTop: '1.5rem',
-          borderTop: '1px solid var(--border-subtle)',
+          borderTop: '1px solid rgba(0, 0, 0, 0.08)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -255,10 +263,9 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
                 id="btn-slide-jump-demo"
                 className="btn btn-primary"
                 onClick={() => onJumpToDemo(slide.demoTargetPersona!)}
-                style={{ background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)' }}
               >
                 <Play size={15} fill="currentColor" />
-                <span>Jump to Live Interactive Demo ({slide.demoTargetPersona.toUpperCase()} SIDE)</span>
+                <span>Explore Live Platform ({slide.demoTargetPersona.toUpperCase()} PORTAL)</span>
                 <ExternalLink size={14} />
               </button>
             ) : (
@@ -295,8 +302,8 @@ export const SlideDeck: React.FC<SlideDeckProps> = ({ onJumpToDemo }) => {
 
       {/* Speaker Notes Drawer */}
       {showNotes && (
-        <div className="glass-panel" style={{ padding: '1.25rem 1.75rem', background: 'rgba(22, 29, 48, 0.9)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#fbbf24' }}>
+        <div className="glass-panel" style={{ padding: '1.25rem 1.75rem', background: '#f8fafc', border: '1px solid rgba(0, 0, 0, 0.08)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: 'var(--primary-red)' }}>
             <FileText size={16} />
             <h4 style={{ fontSize: '0.95rem', fontWeight: '700' }}>Presenter Pitch Notes (For Judges)</h4>
           </div>

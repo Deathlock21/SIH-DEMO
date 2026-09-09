@@ -54,24 +54,30 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       {/* Header Banner */}
-      <div className="glass-panel" style={{ padding: '1.75rem' }}>
+      <div className="glass-panel" style={{ 
+        padding: '2rem',
+        background: '#ffffff',
+        border: '1px solid rgba(220, 38, 38, 0.2)',
+        position: 'relative',
+        boxShadow: 'var(--shadow-md)'
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <Sparkles size={20} color="#06b6d4" />
-              <h2 style={{ fontSize: '1.4rem' }}>Personalized Learning Roadmap</h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
+              <Sparkles size={20} color="var(--primary-red)" />
+              <h2 style={{ fontSize: '1.6rem', color: '#0f172a' }}>Personalized Learning Roadmap</h2>
             </div>
-            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-              Tailored specifically to bridge identified gaps for <strong>{currentRole.title}</strong>.
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+              Tailored curriculum to bridge identified skill gaps for <strong style={{ color: 'var(--primary-red)' }}>{currentRole.title}</strong>.
             </p>
           </div>
 
           <button 
             id="btn-goto-internships"
-            className="btn btn-secondary"
+            className="btn btn-primary"
             onClick={onNavigateToInternships}
           >
-            <span>View Unlocked Internships</span>
+            <span>View Matched Internships</span>
             <ArrowRight size={16} />
           </button>
         </div>
@@ -79,7 +85,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
 
       {/* 4-Tier Stepper Timeline */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', position: 'relative' }}>
-        {milestones.map((milestone, idx) => {
+        {milestones.map((milestone) => {
           const allCompleted = milestone.tasks.every(t => t.completed);
           const completedCount = milestone.tasks.filter(t => t.completed).length;
 
@@ -89,46 +95,50 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
               className="glass-panel"
               style={{
                 padding: '1.75rem',
+                background: '#ffffff',
                 borderLeft: `4px solid ${
-                  milestone.status === 'locked' ? 'var(--border-subtle)' :
-                  allCompleted ? '#10b981' : '#06b6d4'
+                  milestone.status === 'locked' ? '#cbd5e1' :
+                  allCompleted ? '#059669' : '#dc2626'
                 }`,
-                opacity: milestone.status === 'locked' ? 0.65 : 1
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                opacity: milestone.status === 'locked' ? 0.7 : 1,
+                boxShadow: 'var(--shadow-sm)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                   <div style={{
-                    width: '36px',
-                    height: '36px',
+                    width: '42px',
+                    height: '42px',
                     borderRadius: '10px',
                     background: milestone.status === 'locked' 
-                      ? 'rgba(255,255,255,0.05)' 
-                      : 'rgba(6, 182, 212, 0.15)',
+                      ? '#f1f5f9' 
+                      : 'linear-gradient(135deg, #dc2626, #b91c1c)',
+                    border: `1px solid ${milestone.status === 'locked' ? '#cbd5e1' : '#b91c1c'}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: milestone.status === 'locked' ? 'var(--text-muted)' : '#22d3ee',
+                    color: milestone.status === 'locked' ? 'var(--text-muted)' : '#ffffff',
                     fontWeight: '800',
                     fontSize: '1rem'
                   }}>
-                    {milestone.status === 'locked' ? <Lock size={18} /> : milestone.level}
+                    {milestone.status === 'locked' ? <Lock size={18} /> : `P${milestone.level}`}
                   </div>
                   <div>
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: '700' }}>{milestone.title}</h3>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#0f172a' }}>{milestone.title}</h3>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                         <Clock size={12} /> {milestone.duration}
                       </span>
                       <span>•</span>
-                      <span style={{ color: '#22d3ee' }}>Focus Skill: {milestone.skillTarget}</span>
+                      <span style={{ color: 'var(--primary-red)', fontWeight: '600' }}>Skill Target: {milestone.skillTarget}</span>
                     </div>
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <span className={`badge ${allCompleted ? 'badge-emerald' : milestone.status === 'locked' ? 'badge-amber' : 'badge-cyan'}`}>
-                    {allCompleted ? 'Phase Complete' : `${completedCount}/${milestone.tasks.length} Done`}
+                  <span className={`badge ${allCompleted ? 'badge-emerald' : milestone.status === 'locked' ? 'badge-amber' : 'badge-rose'}`}>
+                    {allCompleted ? 'Milestone Completed' : `${completedCount}/${milestone.tasks.length} Tasks Completed`}
                   </span>
 
                   {milestone.quiz && (
@@ -136,7 +146,6 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                       id={`btn-assessment-${milestone.id}`}
                       className="btn btn-primary btn-sm"
                       onClick={() => onLaunchAssessment(milestone)}
-                      style={{ background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' }}
                     >
                       <Award size={14} /> Take Skill Verification Quiz
                     </button>
@@ -151,8 +160,8 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                     key={task.id}
                     onClick={() => milestone.status !== 'locked' && toggleTask(milestone.id, task.id)}
                     style={{
-                      background: 'var(--bg-surface)',
-                      border: '1px solid var(--border-subtle)',
+                      background: '#f8fafc',
+                      border: '1px solid rgba(0, 0, 0, 0.06)',
                       borderRadius: 'var(--radius-md)',
                       padding: '0.75rem 1rem',
                       display: 'flex',
@@ -164,7 +173,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       {task.completed ? (
-                        <CheckCircle2 size={18} color="#10b981" />
+                        <CheckCircle2 size={18} color="#059669" />
                       ) : (
                         <Circle size={18} color="var(--text-muted)" />
                       )}
@@ -183,7 +192,7 @@ export const RoadmapView: React.FC<RoadmapViewProps> = ({
                         target="_blank"
                         rel="noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        style={{ color: '#06b6d4', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                        style={{ color: 'var(--primary-red)', fontSize: '0.78rem', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: '600' }}
                       >
                         <span>Resource Docs</span>
                         <ExternalLink size={12} />

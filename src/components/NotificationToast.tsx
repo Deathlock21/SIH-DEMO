@@ -32,16 +32,16 @@ export const NotificationToast: React.FC<NotificationToastProps> = ({ toasts, on
         <div
           key={toast.id}
           style={{
-            background: 'rgba(16, 21, 34, 0.95)',
+            background: '#ffffff',
             backdropFilter: 'blur(16px)',
             border: `1px solid ${
-              toast.type === 'loop' ? 'rgba(139, 92, 246, 0.5)' :
-              toast.type === 'success' ? 'rgba(16, 185, 129, 0.5)' :
-              'rgba(6, 182, 212, 0.5)'
+              toast.type === 'loop' ? 'var(--primary-red)' :
+              toast.type === 'success' ? '#10b981' :
+              'rgba(220, 38, 38, 0.3)'
             }`,
             borderRadius: 'var(--radius-md)',
             padding: '1rem 1.25rem',
-            boxShadow: 'var(--shadow-lg), 0 0 20px rgba(0,0,0,0.6)',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12), 0 0 15px rgba(220, 38, 38, 0.08)',
             display: 'flex',
             alignItems: 'flex-start',
             gap: '0.75rem',
@@ -49,8 +49,8 @@ export const NotificationToast: React.FC<NotificationToastProps> = ({ toasts, on
           }}
         >
           <div style={{
-            color: toast.type === 'loop' ? '#c084fc' :
-                   toast.type === 'success' ? '#34d399' : '#22d3ee',
+            color: toast.type === 'loop' ? 'var(--primary-red)' :
+                   toast.type === 'success' ? '#059669' : 'var(--primary-red)',
             marginTop: '2px'
           }}>
             {toast.type === 'loop' ? <RefreshCw size={18} /> :

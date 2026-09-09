@@ -12,7 +12,7 @@
 
 .footer {
   border-top: 1px solid var(--border-subtle);
-  background: rgba(10, 13, 20, 0.95);
+  background: #ffffff;
   padding: 2rem 0;
   text-align: center;
   color: var(--text-muted);
@@ -20,5 +20,6 @@
 }
 
 .footer a {
-  color: var(--primary-cyan);
+  color: var(--primary-red);
 }
+

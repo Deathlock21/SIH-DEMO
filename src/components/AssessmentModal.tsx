@@ -90,11 +90,12 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
               width: '32px',
               height: '32px',
               borderRadius: '8px',
-              background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)',
+              background: 'linear-gradient(135deg, #dc2626, #991b1b)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#ffffff'
+              color: '#ffffff',
+              boxShadow: '0 2px 8px rgba(220, 38, 38, 0.25)'
             }}>
               <Award size={18} />
             </div>
@@ -103,7 +104,7 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                 Skill Verification Assessment: {milestone.skillTarget}
               </h3>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                Proctored SkillBridge Diagnostic Assessment
+                Proctored INTERNPARK Diagnostic Assessment
               </p>
             </div>
           </div>
@@ -118,10 +119,10 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
           <div style={{ padding: '1.75rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               <span>Question {currentIdx + 1} of {quiz.length}</span>
-              <span style={{ color: '#22d3ee' }}>Passing score: 70%</span>
+              <span style={{ color: '#dc2626', fontWeight: '600' }}>Passing score: 70%</span>
             </div>
 
-            <div style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.5 }}>
+            <div style={{ fontSize: '1.05rem', fontWeight: '700', lineHeight: 1.5, color: 'var(--text-main)' }}>
               {currentQ.question}
             </div>
 
@@ -134,12 +135,13 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     type="button"
                     onClick={() => handleSelectOption(optIdx)}
                     style={{
-                      background: isSelected ? 'rgba(6, 182, 212, 0.15)' : 'var(--bg-surface)',
-                      border: `1px solid ${isSelected ? '#06b6d4' : 'var(--border-subtle)'}`,
+                      background: isSelected ? 'rgba(220, 38, 38, 0.08)' : '#ffffff',
+                      border: isSelected ? '2px solid #dc2626' : '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-md)',
                       padding: '0.85rem 1rem',
                       textAlign: 'left',
-                      color: isSelected ? '#ffffff' : 'var(--text-secondary)',
+                      color: isSelected ? '#991b1b' : 'var(--text-main)',
+                      fontWeight: isSelected ? '600' : '400',
                       fontSize: '0.9rem',
                       cursor: 'pointer',
                       display: 'flex',
@@ -149,15 +151,15 @@ export const AssessmentModal: React.FC<AssessmentModalProps> = ({
                     }}
                   >
                     <span style={{
-                      width: '24px',
-                      height: '24px',
+                      width: '26px',
+                      height: '26px',
                       borderRadius: '50%',
-                      background: isSelected ? '#06b6d4' : 'rgba(255, 255, 255, 0.08)',
-                      color: isSelected ? '#000000' : 'var(--text-muted)',
+                      background: isSelected ? '#dc2626' : '#f1f5f9',
+                      color: isSelected ? '#ffffff' : '#64748b',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '0.75rem',
+                      fontSize: '0.8rem',
                       fontWeight: '700'
                     }}>
                       {String.fromCharCode(65 + optIdx)}
