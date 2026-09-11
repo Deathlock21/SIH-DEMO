@@ -7,7 +7,11 @@ import {
   School, 
   ArrowRight, 
   Sparkles, 
-  RefreshCw
+  RefreshCw,
+  Presentation,
+  ShieldCheck,
+  Zap,
+  BarChart3
 } from 'lucide-react';
 
 interface LandingHeroProps {
@@ -17,8 +21,7 @@ interface LandingHeroProps {
 export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => {
   return (
     <section style={{
-      padding: '2.5rem 0 2.25rem 0',
-      borderBottom: '1px solid var(--border-subtle)',
+      padding: '2.5rem 0 3.5rem 0',
       position: 'relative',
       zIndex: 1
     }}>
@@ -106,7 +109,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             glowColor="red"
             maxTilt={6}
             onClick={() => onSelectPersona('student')}
-            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)', cursor: 'pointer' }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
@@ -132,10 +135,10 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             </p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
-                <span>Explore Student Hub</span>
+                <span>Open Student Hub</span>
                 <ArrowRight size={16} />
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Student Mode</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Dedicated Page</span>
             </div>
           </TiltCard>
 
@@ -145,7 +148,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             glowColor="white"
             maxTilt={6}
             onClick={() => onSelectPersona('industry')}
-            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)', cursor: 'pointer' }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
@@ -171,10 +174,10 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             </p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
-                <span>Inspect Candidates</span>
+                <span>Open Industry Portal</span>
                 <ArrowRight size={16} />
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Recruiter Mode</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Dedicated Page</span>
             </div>
           </TiltCard>
 
@@ -184,7 +187,7 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             glowColor="red"
             maxTilt={6}
             onClick={() => onSelectPersona('college')}
-            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)' }}
+            style={{ padding: '1.6rem', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.08)', cursor: 'pointer' }}
           >
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
               <div style={{
@@ -210,15 +213,139 @@ export const LandingHero: React.FC<LandingHeroProps> = ({ onSelectPersona }) => 
             </p>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#dc2626', fontWeight: '700', fontSize: '0.85rem' }}>
-                <span>Review Analytics</span>
+                <span>Open College Dashboard</span>
                 <ArrowRight size={16} />
               </div>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>College Mode</span>
+              <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Dedicated Page</span>
             </div>
           </TiltCard>
+        </div>
+
+        {/* SIH Presentation Quick Launcher Bar */}
+        <div style={{
+          marginTop: '2.5rem',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(254, 242, 242, 0.9))',
+          borderRadius: 'var(--radius-xl)',
+          border: '1px solid rgba(220, 38, 38, 0.25)',
+          padding: '1.5rem 2rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '1.5rem',
+          boxShadow: '0 8px 30px rgba(220, 38, 38, 0.08)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <div style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '12px',
+              background: '#dc2626',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#ffffff',
+              boxShadow: '0 4px 14px rgba(220, 38, 38, 0.35)'
+            }}>
+              <Presentation size={24} />
+            </div>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <h4 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', margin: 0 }}>
+                  Smart India Hackathon 2026 Presentation
+                </h4>
+                <span className="badge badge-rose" style={{ fontSize: '0.7rem' }}>12 Slides</span>
+              </div>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: '0.25rem 0 0 0' }}>
+                Comprehensive slide deck detailing problem statement, explainable architecture, market metrics, and live demo hooks.
+              </p>
+            </div>
+          </div>
+
+          <button
+            id="hero-open-deck-btn"
+            className="btn btn-primary"
+            onClick={() => onSelectPersona('presentation')}
+            style={{ padding: '0.7rem 1.4rem', fontWeight: '700', fontSize: '0.9rem' }}
+          >
+            <Sparkles size={16} />
+            <span>Launch Slide Deck</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
+        {/* 4 Core Pillars Overview */}
+        <div style={{ marginTop: '3rem' }}>
+          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: '#0f172a', letterSpacing: '-0.01em' }}>
+              Engineered for Complete Tripartite Synchronization
+            </h4>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+              Select any view above to jump into its full dedicated data tools and analytics.
+            </p>
+          </div>
+
+          <div className="grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+            <div style={{
+              background: '#ffffff',
+              padding: '1.25rem',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
+            }}>
+              <div style={{ color: '#dc2626', marginBottom: '0.6rem' }}><Zap size={20} /></div>
+              <h5 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.35rem' }}>Dynamic Taxonomy</h5>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                Maps fragmented college coursework to real-world industrial skill graphs and verified badges.
+              </p>
+            </div>
+
+            <div style={{
+              background: '#ffffff',
+              padding: '1.25rem',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
+            }}>
+              <div style={{ color: '#dc2626', marginBottom: '0.6rem' }}><ShieldCheck size={20} /></div>
+              <h5 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.35rem' }}>Proctored Verification</h5>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                Multi-factor validation through proctored mini-quizzes, GitHub project parsing, and peer review.
+              </p>
+            </div>
+
+            <div style={{
+              background: '#ffffff',
+              padding: '1.25rem',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
+            }}>
+              <div style={{ color: '#dc2626', marginBottom: '0.6rem' }}><BarChart3 size={20} /></div>
+              <h5 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.35rem' }}>Explainable Match (XAI)</h5>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                Deterministic score breakdowns showing recruiter weights, matched competencies, and exact skill gaps.
+              </p>
+            </div>
+
+            <div style={{
+              background: '#ffffff',
+              padding: '1.25rem',
+              borderRadius: 'var(--radius-lg)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.03)'
+            }}>
+              <div style={{ color: '#dc2626', marginBottom: '0.6rem' }}><RefreshCw size={20} /></div>
+              <h5 style={{ fontSize: '0.95rem', fontWeight: '700', color: '#0f172a', marginBottom: '0.35rem' }}>Closed Feedback Loop</h5>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
+                Post-internship evaluations directly upgrade student skills and alert colleges of syllabus gaps.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 };
+
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivePersona } from '../types';
 import { 
+  Home,
   GraduationCap, 
   Building2, 
   School, 
@@ -45,9 +46,10 @@ export const Navbar: React.FC<NavbarProps> = ({
       }}>
         {/* Brand & SIH Badge */}
         <div 
-          onClick={() => onSelectPersona('student')}
+          onClick={() => onSelectPersona('home')}
           style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', cursor: 'pointer' }}
           id="nav-brand-logo"
+          title="Return to Overview"
         >
           <div style={{
             width: '40px',
@@ -91,6 +93,15 @@ export const Navbar: React.FC<NavbarProps> = ({
           borderRadius: 'var(--radius-full)',
           border: '1px solid rgba(0, 0, 0, 0.08)'
         }}>
+          <button
+            id="nav-tab-home"
+            className={`role-pill ${activePersona === 'home' ? 'active' : ''}`}
+            onClick={() => onSelectPersona('home')}
+          >
+            <Home size={16} />
+            <span>Overview</span>
+          </button>
+
           <button
             id="nav-tab-student"
             className={`role-pill ${activePersona === 'student' ? 'active' : ''}`}

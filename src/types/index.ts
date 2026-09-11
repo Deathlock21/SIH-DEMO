@@ -181,7 +181,7 @@ export interface IndustryEvaluation {
   readyForPPO: boolean;
 }
 
-export type ActivePersona = 'student' | 'industry' | 'college' | 'presentation';
+export type ActivePersona = 'home' | 'student' | 'industry' | 'college' | 'presentation';
 
 export interface CandidateItem {
   id: string;

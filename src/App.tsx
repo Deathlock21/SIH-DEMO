@@ -30,6 +30,9 @@ import { AssessmentModal } from './components/AssessmentModal';
 import { NotificationToast, ToastMessage } from './components/NotificationToast';
 
 import { 
+  Home,
+  ArrowLeft,
+  ChevronRight,
   UserCheck, 
   Target, 
   Zap, 
@@ -39,9 +42,14 @@ import {
 } from 'lucide-react';
 
 export function App() {
-  const [activePersona, setActivePersona] = useState<ActivePersona>('student');
+  const [activePersona, setActivePersona] = useState<ActivePersona>('home');
   const [student, setStudent] = useState<StudentProfile>(INITIAL_STUDENT);
   const [studentTab, setStudentTab] = useState<'gap' | 'roadmap' | 'profile' | 'jobs'>('gap');
+
+  const handleSelectPersona = (persona: ActivePersona) => {
+    setActivePersona(persona);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   
   const [evaluations, setEvaluations] = useState<IndustryEvaluation[]>(INITIAL_EVALUATIONS);
   const [collegeAnalytics, setCollegeAnalytics] = useState<CollegeBatchAnalytics>(COLLEGE_BATCH_DATA);
@@ -195,132 +203,183 @@ export function App() {
       {/* Navigation */}
       <Navbar
         activePersona={activePersona}
-        onSelectPersona={setActivePersona}
+        onSelectPersona={handleSelectPersona}
         feedbackNotificationCount={evaluations.length}
         onOpenNotifications={() => {
-          setActivePersona('college');
+          handleSelectPersona('college');
         }}
       />
 
-      {/* Hero section visible unless in Presentation Mode */}
-      {activePersona !== 'presentation' && (
-        <LandingHero onSelectPersona={setActivePersona} />
+      {/* Overview Landing Page: Shows Hero, Cards & Architecture; lower data is removed */}
+      {activePersona === 'home' && (
+        <LandingHero onSelectPersona={handleSelectPersona} />
       )}
 
-      {/* Main Container */}
-      <main className="main-content">
-        <div className="container">
-          {/* Persona 1: STUDENT HUB */}
-          {activePersona === 'student' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              {/* Student Hub Secondary Navigation Pills */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                background: 'var(--bg-surface)',
-                padding: '0.5rem 1rem',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--border-subtle)',
-                flexWrap: 'wrap',
-                gap: '0.75rem'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <button
-                    id="subtab-student-gap"
-                    className={`role-pill ${studentTab === 'gap' ? 'active' : ''}`}
-                    onClick={() => setStudentTab('gap')}
+      {/* Dedicated Data Pages: Rendered full-screen when a persona view is selected */}
+      {activePersona !== 'home' && (
+        <main className="main-content page-transition-enter">
+          <div className="container">
+            {/* Dedicated Page Header Banner */}
+            <div className="dedicated-page-header">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                <div className="breadcrumb-nav">
+                  <span
+                    className="breadcrumb-link"
+                    onClick={() => handleSelectPersona('home')}
+                    title="Return to Overview"
                   >
-                    <Target size={15} /> Competency Gap Diagnostic
-                  </button>
-                  <button
-                    id="subtab-student-roadmap"
-                    className={`role-pill ${studentTab === 'roadmap' ? 'active' : ''}`}
-                    onClick={() => setStudentTab('roadmap')}
-                  >
-                    <Zap size={15} /> Personalized Learning Roadmap
-                  </button>
-                  <button
-                    id="subtab-student-profile"
-                    className={`role-pill ${studentTab === 'profile' ? 'active' : ''}`}
-                    onClick={() => setStudentTab('profile')}
-                  >
-                    <UserCheck size={15} /> Student Skill Profile
-                  </button>
-                  <button
-                    id="subtab-student-jobs"
-                    className={`role-pill ${studentTab === 'jobs' ? 'active' : ''}`}
-                    onClick={() => setStudentTab('jobs')}
-                  >
-                    <Briefcase size={15} /> Matched Opportunities
-                  </button>
+                    <Home size={14} /> Overview
+                  </span>
+                  <ChevronRight size={14} />
+                  <span style={{ color: 'var(--primary-red)', fontWeight: '700' }}>
+                    {activePersona === 'student' && 'Student Hub'}
+                    {activePersona === 'industry' && 'Industry Portal'}
+                    {activePersona === 'college' && 'College Dashboard'}
+                    {activePersona === 'presentation' && 'Presentation Deck'}
+                  </span>
                 </div>
 
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                  Viewing as: <strong style={{ color: 'var(--primary-red)' }}>Rohan Sharma (Computer Science)</strong>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                  <h2 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#0f172a', margin: 0 }}>
+                    {activePersona === 'student' && 'Student Competency & Micro-Internship Hub'}
+                    {activePersona === 'industry' && 'Industry Recruiter Candidate Matcher'}
+                    {activePersona === 'college' && 'College Placement & Curriculum Analytics'}
+                    {activePersona === 'presentation' && 'Smart India Hackathon 2026 Presentation'}
+                  </h2>
+                  <span className="badge badge-rose">
+                    {activePersona === 'student' && 'Student Mode'}
+                    {activePersona === 'industry' && 'Recruiter Mode'}
+                    {activePersona === 'college' && 'College Admin Mode'}
+                    {activePersona === 'presentation' && '12 Slides Deck'}
+                  </span>
                 </div>
               </div>
 
-              {/* Sub-tab view components */}
-              {studentTab === 'gap' && (
-                <SkillRadarView
-                  student={student}
-                  onNavigateToRoadmap={() => setStudentTab('roadmap')}
-                  onSelectRole={handleSelectRole}
-                />
-              )}
-
-              {studentTab === 'roadmap' && (
-                <RoadmapView
-                  student={student}
-                  onLaunchAssessment={(milestone) => setQuizMilestone(milestone)}
-                  onNavigateToInternships={() => setStudentTab('jobs')}
-                />
-              )}
-
-              {studentTab === 'profile' && (
-                <StudentProfileView
-                  student={student}
-                  onAddSkill={handleAddSkill}
-                />
-              )}
-
-              {studentTab === 'jobs' && (
-                <MatchedInternshipsView
-                  student={student}
-                  onApplySuccess={handleApplySuccess}
-                />
-              )}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+                <button
+                  id="page-header-back-home"
+                  className="back-to-overview-btn"
+                  onClick={() => handleSelectPersona('home')}
+                  title="Return to Overview Landing Page"
+                >
+                  <ArrowLeft size={16} />
+                  <span>Back to Overview</span>
+                </button>
+              </div>
             </div>
-          )}
 
-          {/* Persona 2: INDUSTRY PORTAL */}
-          {activePersona === 'industry' && (
-            <CandidateMatcher
-              onOpenEvaluationModal={(candidate) => setEvalModalCandidate(candidate)}
-            />
-          )}
+            {/* Persona 1: STUDENT HUB */}
+            {activePersona === 'student' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                {/* Student Hub Secondary Navigation Pills */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  background: 'var(--bg-surface)',
+                  padding: '0.5rem 1rem',
+                  borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--border-subtle)',
+                  flexWrap: 'wrap',
+                  gap: '0.75rem'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                    <button
+                      id="subtab-student-gap"
+                      className={`role-pill ${studentTab === 'gap' ? 'active' : ''}`}
+                      onClick={() => setStudentTab('gap')}
+                    >
+                      <Target size={15} /> Competency Gap Diagnostic
+                    </button>
+                    <button
+                      id="subtab-student-roadmap"
+                      className={`role-pill ${studentTab === 'roadmap' ? 'active' : ''}`}
+                      onClick={() => setStudentTab('roadmap')}
+                    >
+                      <Zap size={15} /> Personalized Learning Roadmap
+                    </button>
+                    <button
+                      id="subtab-student-profile"
+                      className={`role-pill ${studentTab === 'profile' ? 'active' : ''}`}
+                      onClick={() => setStudentTab('profile')}
+                    >
+                      <UserCheck size={15} /> Student Skill Profile
+                    </button>
+                    <button
+                      id="subtab-student-jobs"
+                      className={`role-pill ${studentTab === 'jobs' ? 'active' : ''}`}
+                      onClick={() => setStudentTab('jobs')}
+                    >
+                      <Briefcase size={15} /> Matched Opportunities
+                    </button>
+                  </div>
 
-          {/* Persona 3: COLLEGE DASHBOARD */}
-          {activePersona === 'college' && (
-            <CollegeAnalyticsView
-              analytics={collegeAnalytics}
-              evaluations={evaluations}
-              onActionTaken={handleCurriculumAction}
-            />
-          )}
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    Viewing as: <strong style={{ color: 'var(--primary-red)' }}>Rohan Sharma (Computer Science)</strong>
+                  </div>
+                </div>
 
-          {/* Persona 4: SIH 2026 12-SLIDE PRESENTATION MODE */}
-          {activePersona === 'presentation' && (
-            <SlideDeck
-              onJumpToDemo={(persona) => {
-                setActivePersona(persona);
-                addToast('Switched to Live Demo', `Navigated to ${persona.toUpperCase()} dashboard.`, 'info');
-              }}
-            />
-          )}
-        </div>
-      </main>
+                {/* Sub-tab view components */}
+                {studentTab === 'gap' && (
+                  <SkillRadarView
+                    student={student}
+                    onNavigateToRoadmap={() => setStudentTab('roadmap')}
+                    onSelectRole={handleSelectRole}
+                  />
+                )}
+
+                {studentTab === 'roadmap' && (
+                  <RoadmapView
+                    student={student}
+                    onLaunchAssessment={(milestone) => setQuizMilestone(milestone)}
+                    onNavigateToInternships={() => setStudentTab('jobs')}
+                  />
+                )}
+
+                {studentTab === 'profile' && (
+                  <StudentProfileView
+                    student={student}
+                    onAddSkill={handleAddSkill}
+                  />
+                )}
+
+                {studentTab === 'jobs' && (
+                  <MatchedInternshipsView
+                    student={student}
+                    onApplySuccess={handleApplySuccess}
+                  />
+                )}
+              </div>
+            )}
+
+            {/* Persona 2: INDUSTRY PORTAL */}
+            {activePersona === 'industry' && (
+              <CandidateMatcher
+                onOpenEvaluationModal={(candidate) => setEvalModalCandidate(candidate)}
+              />
+            )}
+
+            {/* Persona 3: COLLEGE DASHBOARD */}
+            {activePersona === 'college' && (
+              <CollegeAnalyticsView
+                analytics={collegeAnalytics}
+                evaluations={evaluations}
+                onActionTaken={handleCurriculumAction}
+              />
+            )}
+
+            {/* Persona 4: SIH 2026 12-SLIDE PRESENTATION MODE */}
+            {activePersona === 'presentation' && (
+              <SlideDeck
+                onJumpToDemo={(persona) => {
+                  handleSelectPersona(persona);
+                  addToast('Switched to Live Demo', `Navigated to ${persona.toUpperCase()} dashboard.`, 'info');
+                }}
+              />
+            )}
+          </div>
+        </main>
+      )}
 
       {/* Modals */}
       {evalModalCandidate && (
@@ -348,9 +407,17 @@ export function App() {
           <span className="radar-pulse-dot" />
         </div>
         <button
+          id="hud-tab-home"
+          className={`hud-pill-button ${activePersona === 'home' ? 'active' : ''}`}
+          onClick={() => handleSelectPersona('home')}
+        >
+          <Home size={13} />
+          <span>Home</span>
+        </button>
+        <button
           id="hud-tab-student"
           className={`hud-pill-button ${activePersona === 'student' ? 'active' : ''}`}
-          onClick={() => setActivePersona('student')}
+          onClick={() => handleSelectPersona('student')}
         >
           <UserCheck size={13} />
           <span>Student</span>
@@ -358,7 +425,7 @@ export function App() {
         <button
           id="hud-tab-industry"
           className={`hud-pill-button ${activePersona === 'industry' ? 'active' : ''}`}
-          onClick={() => setActivePersona('industry')}
+          onClick={() => handleSelectPersona('industry')}
         >
           <Briefcase size={13} />
           <span>Industry</span>
@@ -366,7 +433,7 @@ export function App() {
         <button
           id="hud-tab-college"
           className={`hud-pill-button ${activePersona === 'college' ? 'active' : ''}`}
-          onClick={() => setActivePersona('college')}
+          onClick={() => handleSelectPersona('college')}
         >
           <Layers size={13} />
           <span>College</span>
@@ -374,7 +441,7 @@ export function App() {
         <button
           id="hud-tab-deck"
           className={`hud-pill-button ${activePersona === 'presentation' ? 'active' : ''}`}
-          onClick={() => setActivePersona('presentation')}
+          onClick={() => handleSelectPersona('presentation')}
         >
           <Sparkles size={13} />
           <span>Pitch Deck</span>
